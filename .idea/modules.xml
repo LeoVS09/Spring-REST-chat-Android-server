@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SprBoot.iml" filepath="$PROJECT_DIR$/.idea/modules/SprBoot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SprBoot_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SprBoot_main.iml" group="SprBoot" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SprBoot_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SprBoot_test.iml" group="SprBoot" />
+    </modules>
+  </component>
+</project>
