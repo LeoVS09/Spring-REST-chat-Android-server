@@ -21,32 +21,32 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/mobile/{userLogin}")
+@RequestMapping("/mobile")
 public class PostController {
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
     @RequestMapping(value="/message", method = RequestMethod.POST)
-    public Message gotMessage(@PathVariable String userLogin,@RequestHeader HttpHeaders headers, @RequestBody Message message){
+    public Message gotMessage(@RequestHeader HttpHeaders headers, @RequestBody Message message){
         log.info(message.getName() + ": " + message.getText());
         message.setTime(new Date().getTime());
         return message;
     }
 
-    @RequestMapping(value="/registration", method = RequestMethod.POST)
-    public ResponseEntity<Void> Registration(@PathVariable String userLogin,@RequestHeader HttpHeaders headers, @RequestBody User user){
+    @RequestMapping(value="/user/registration", method = RequestMethod.POST)
+    public ResponseEntity<Void> Registration(@RequestHeader HttpHeaders headers, @RequestBody User user){
             if(user.getLogin() == "Trol" && user.getPassword() == "lol") return new ResponseEntity<Void>(HttpStatus.OK);
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public ResponseEntity<String> LoginIn(@PathVariable String userLogin,@RequestHeader HttpHeaders headers, @RequestBody User user){
+    @RequestMapping(value="/user/login", method = RequestMethod.POST)
+    public ResponseEntity<String> LoginIn(@RequestHeader HttpHeaders headers, @RequestBody User user){
         String token = "lololol";
         if(user.getLogin() == "Trol" && user.getPassword() == "lol") return new ResponseEntity<String>(token, HttpStatus.OK);
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ResponseEntity<String> gameCreate(@PathVariable String userLogin,@RequestHeader HttpHeaders headers, @RequestBody Game game){
+    @RequestMapping(value="/game/create", method = RequestMethod.POST)
+    public ResponseEntity<String> gameCreate(@RequestHeader HttpHeaders headers, @RequestBody Game game){
         if(headers.get("Authorization").equals("lololol")) return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
         long id = 101;
         if(game.getName() == "Trol" && game.getPassword() == "lol") return new ResponseEntity<String>(Long.toString(id), HttpStatus.OK);
