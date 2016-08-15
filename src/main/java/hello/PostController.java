@@ -18,13 +18,13 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/message/{userLogin}")
+@RequestMapping("/message")
 public class PostController {
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
     @RequestMapping(method = RequestMethod.POST)
-    public Message gotMessage(@PathVariable String userLogin,@RequestBody Message message){
-        log.info(message.getName() + ": " + message.getText());
+    public Message gotMessage(@RequestBody Message message){
+        log.info("------->" + message.getName() + ": " + message.getText());
         message.setTime(new Date().getTime());
         return message;
     }
