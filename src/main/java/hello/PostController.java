@@ -18,14 +18,21 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/mobile")
 public class PostController {
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/", method = RequestMethod.POST)
     public Message gotMessage(@RequestBody Message message){
         log.info("------->" + message.getName() + ": " + message.getText());
         message.setTime(new Date().getTime());
         return message;
+    }
+
+    @RequestMapping(value="/user/registration", method = RequestMethod.POST)
+    public User Registration(@RequestBody User user){
+        log.info("------->" + user.getLogin() + ": " + user.getPassword());
+        user.setPassword("OK");
+        return user;
     }
 }
