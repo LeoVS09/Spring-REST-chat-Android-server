@@ -36,7 +36,7 @@ public class PostController {
     @RequestMapping(value="/user/registration", method = RequestMethod.POST)
     public ResponseEntity<Void> Registration(@RequestHeader HttpHeaders headers, @RequestBody User user){
         log.info("------->" + user.getLogin() + ": " + user.getPassword());
-        if(user.getLogin().equals("Trol") && user.equals("lol")) return new ResponseEntity<Void>(HttpStatus.OK);
+        if(user.getLogin().equals("Trol") && user.getPassword().equals("lol")) return new ResponseEntity<Void>(HttpStatus.OK);
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
@@ -44,7 +44,7 @@ public class PostController {
     public ResponseEntity<String> LoginIn(@RequestHeader HttpHeaders headers, @RequestBody User user){
         String token = "lololol";
         log.info("------->" + user.getLogin() + ": " + user.getPassword());
-        if(user.getLogin().equals("Trol") && user.equals("lol")) return new ResponseEntity<String>(token, HttpStatus.OK);
+        if(user.getLogin().equals("Trol") && user.getPassword().equals("lol")) return new ResponseEntity<String>(token, HttpStatus.OK);
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
