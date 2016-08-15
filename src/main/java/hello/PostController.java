@@ -4,7 +4,7 @@ package hello;
  * Created by Администратор on 13.08.2016.
  */
 
-import java.util.concurrent.atomic.AtomicLong;
+//import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +25,11 @@ import java.util.Date;
 public class PostController {
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
+    @RequestMapping("/")
+    public String welcome() {//Welcome page, non-rest
+        return "It's experiment server.";
+    }
+
     @RequestMapping(value="/message", method = RequestMethod.POST)
     public Message gotMessage(@RequestHeader HttpHeaders headers, @RequestBody Message message){
         log.info(message.getName() + ": " + message.getText());
@@ -32,7 +37,9 @@ public class PostController {
         return message;
     }
 
-    @RequestMapping(value="/user/registration", method = RequestMethod.POST)
+    @RequestMapping(value="/user/registration",
+            method = RequestMethod.POST,
+            consumes = "application/json")
     public ResponseEntity<Void> Registration(@RequestHeader HttpHeaders headers, @RequestBody User user){
             if(user.getLogin() == "Trol" && user.getPassword() == "lol") return new ResponseEntity<Void>(HttpStatus.OK);
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
