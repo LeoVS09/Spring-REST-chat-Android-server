@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +44,11 @@ public class PostController {
     }
 
     @RequestMapping(value="/user/login", method = RequestMethod.POST)
-    public ResponseEntity<String> LoginIn(@RequestHeader HttpHeaders headers, @RequestBody User user){
+    public ResponseEntity<String> LoginIn(@RequestHeader HttpHeaders headers, @RequestBody User user) throws Exception{
         String token = "lololol";
         log.info("------->" + user.getLogin() + ": " + user.getPassword());
-        if(user.getLogin().equals("Trol") && user.getPassword().equals("lol")) return new ResponseEntity<String>(token, HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        if(user.getLogin().equals("Trol") && user.getPassword().equals("lol")) return new ResponseEntity<String>(mapper.writeValueAsString(token), HttpStatus.OK);
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
